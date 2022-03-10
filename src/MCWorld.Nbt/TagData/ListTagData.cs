@@ -7,6 +7,6 @@ namespace MCWorld.Nbt.TagData
         public string Name { get; set; }
         public NbtTagType PayloadType { get; set; }
         public int PayloadSize { get; set; }
-        public List<ITagData> Tags { get; set; }
+        public List<ITagData> Tags { get; set; } = new List<ITagData>();
     }
 }

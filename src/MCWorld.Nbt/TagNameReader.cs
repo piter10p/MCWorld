@@ -12,7 +12,7 @@ namespace MCWorld.Nbt
             var lengthBytes = new byte[lenghtBytesCount];
             stream.Read(lengthBytes, 0, lenghtBytesCount);
             lengthBytes = EndianConverter.ConvertNumberIfLocalFormatIsLittleEndian(lengthBytes);
-            var nameLength = BitConverter.ToInt16(lengthBytes, 0);
+            var nameLength = BitConverter.ToUInt16(lengthBytes, 0);
 
             var nameBytes = new byte[nameLength];
             stream.Read(nameBytes, 0, nameLength);

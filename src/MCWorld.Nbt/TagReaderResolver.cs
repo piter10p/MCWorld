@@ -10,6 +10,8 @@ namespace MCWorld.Nbt
         private static readonly IntTagReader IntTagReader = new IntTagReader();
         private static readonly LongTagReader LongTagReader = new LongTagReader();
 
+        private static readonly ListTagReader ListTagReader = new ListTagReader();
+
         public static ITagReader GetTagReader(NbtTagType tagType)
         {
             return tagType switch
@@ -22,6 +24,7 @@ namespace MCWorld.Nbt
                 NbtTagType.Double => throw new System.NotImplementedException(),
                 NbtTagType.ByteArray => throw new System.NotImplementedException(),
                 NbtTagType.String => throw new System.NotImplementedException(),
+                NbtTagType.List => ListTagReader,
                 NbtTagType.IntArray => throw new System.NotImplementedException(),
                 NbtTagType.LongArray => throw new System.NotImplementedException(),
                 _ => throw new NotSupportedException()

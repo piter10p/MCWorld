@@ -32,6 +32,20 @@ namespace MCWorld.Nbt
 
         public CompoundTag ReadDocument()
         {
+            var rootTagData = ReadDocumentData();
+
+            return null;
+        }
+
+        public byte[] GetAllBytes()
+        {
+            var bytes = _stream.ToArray();
+            _stream.Seek(0, SeekOrigin.Begin);
+            return bytes;
+        }
+
+        public object ReadDocumentData()
+        {
             _stream.Seek(0, SeekOrigin.Begin);
 
             var rootTag = ReadRootTag();
@@ -69,15 +83,15 @@ namespace MCWorld.Nbt
                             Name = name,
                         };
 
-                        _parents.Peek().Tags.Add(tagData);
+                        _parent.Tags.Add(tagData);
                         PushParent(tagData);
                     }
-                    else if(tagType == NbtTagType.List)
+                    else if (tagType == NbtTagType.List)
                     {
                         var tagReader = TagReaderResolver.GetTagReader(tagType);
                         var tagData = (ListTagData)tagReader.ReadTag(_stream);
                         tagData.Name = name;
-                        _parents.Peek().Tags.Add(tagData);
+                        _parent.Tags.Add(tagData);
                         PushParent(tagData);
                     }
                     else
@@ -85,7 +99,7 @@ namespace MCWorld.Nbt
                         var tagReader = TagReaderResolver.GetTagReader(tagType);
                         var tagData = tagReader.ReadTag(_stream);
                         tagData.Name = name;
-                        _parents.Peek().Tags.Add(tagData);
+                        _parent.Tags.Add(tagData);
                     }
 
                     if (_isParentList) //at the end we check if list ended
@@ -98,14 +112,7 @@ namespace MCWorld.Nbt
                 }
             }
 
-            return null;
-        }
-
-        public byte[] GetAllBytes()
-        {
-            var bytes = _stream.ToArray();
-            _stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
+            return rootTag;
         }
 
         private CompoundTagData ReadRootTag()

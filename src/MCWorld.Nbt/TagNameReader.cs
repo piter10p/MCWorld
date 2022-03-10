@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace MCWorld.Nbt.TagReaders
+namespace MCWorld.Nbt
 {
     internal static class TagNameReader
     {

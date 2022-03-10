@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MCWorld.Nbt.TagReaders
+namespace MCWorld.Nbt
 {
     internal static class EndianConverter
     {

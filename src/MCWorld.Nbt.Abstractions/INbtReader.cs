@@ -4,6 +4,6 @@ namespace MCWorld.Nbt.Abstractions
 {
     public interface INbtReader
     {
-        public ITag GetNextTag();
+        public CompoundTag ReadDocument();
     }
 }

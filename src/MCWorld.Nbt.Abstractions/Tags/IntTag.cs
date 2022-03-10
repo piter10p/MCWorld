@@ -4,7 +4,7 @@
     {
         public IntTag(string name, int value)
         {
-            Name = name;
+            Name = name ?? throw new System.ArgumentNullException(nameof(name));
             Value = value;
         }
 

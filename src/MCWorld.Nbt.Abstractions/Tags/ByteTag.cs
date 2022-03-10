@@ -4,7 +4,7 @@
     {
         public ByteTag(string name, byte value)
         {
-            Name = name;
+            Name = name ?? throw new System.ArgumentNullException(nameof(name));
             Value = value;
         }
 

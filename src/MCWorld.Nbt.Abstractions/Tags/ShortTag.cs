@@ -4,7 +4,7 @@
     {
         public ShortTag(string name, short value)
         {
-            Name = name;
+            Name = name ?? throw new System.ArgumentNullException(nameof(name));
             Value = value;
         }
 
